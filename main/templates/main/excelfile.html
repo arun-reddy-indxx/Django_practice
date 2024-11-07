@@ -1,0 +1,38 @@
+{% extends "main/base.html" %}
+{% block title %} Upload File and Number {% endblock %}
+{% block header %}{% endblock %}
+{% block content %}
+    {% load crispy_forms_tags  %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button type="submit">Submit</button>
+    </form>
+    <hr>
+    <!-- {% if not changed_rows.empty %}
+    {% if df_html %}
+    <div>
+        <h2>Full DataFrame</h2>
+        {{ df_html|safe }}
+    </div>
+    {% endif %}
+    {% endif %} -->
+    {% if cf_html %}
+    <div>
+        <h2>Changed DataFrame</h2>
+        {{ cf_html|safe }}
+    </div>
+    {% endif %}
+
+    <hr> 
+    {% if output_file %}
+    <hr>
+    <div>
+        <h2>Download Processed File</h2>
+        <a href="{{ output_file }}" download>
+            <button>Download</button>
+        </a>
+    </div>
+    {% endif %}
+
+{% endblock %}
